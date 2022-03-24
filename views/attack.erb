@@ -7,8 +7,10 @@
   <title>Attack</title>
 </head>
 <body>
-  <%= @game.player_1.name %> attacked <%= @game.player_2.name %>
+  <%= @game.current_turn.name %> attacked <%= @game.opponent_of(@game.current_turn).name %>
 
-  <a href="/play">OK</a>
+  <form action="switch-turns" method="post">
+    <input type="submit" value="OK">
+  </form>
 </body>
 </html>
