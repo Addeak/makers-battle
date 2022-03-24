@@ -24,6 +24,7 @@ class Battle < Sinatra::Base
 
   get '/play' do
     @game = $game
+    redirect '/victory' if @game.current_turn.dead?
     erb :play
   end
 
@@ -36,6 +37,11 @@ class Battle < Sinatra::Base
   post '/switch-turns' do
     $game.switch_turns
     redirect '/play'
+  end
+
+  get '/victory' do
+    @game = $game
+    erb :victory
   end
 
   run if app_file == $0
